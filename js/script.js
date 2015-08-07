@@ -47,9 +47,19 @@ app.getGenre = function(query){
 	},
 	success: function(artist){
 	    // console.log(artist.response.artists[0].genres);
-	    app.genreRadioButtons(artist.response.artists[0].genres);
-	} //end of success function
+            if(artist.response.artists[0].genres){
+            
+	        app.genreRadioButtons(artist.response.artists[0].genres);
+            } else {
+                alert(query + " was not found in our database, please try another! <3");
+                $(".search_field").text("");
+            }
+        }, //end of success function
 
+        error: function(){
+
+
+        }
 
     }); //ajax to search for inputed artist's genre.
 
@@ -151,6 +161,7 @@ app.arraytoObjects = function (array,addObject){
     
 }
 
+var artistsByGenre = {};
 //this function is to check the genre for the A&C artists
 //function to search through list of genres, and their corresponding artists
 //accepts dot notation, with the final list of artists being contained in arrays for acccess/ randomization
@@ -160,7 +171,7 @@ app.genreMatcher = function(genre){
     // regex to strip whitespaces from genre
     var foundGenre = genre;
 
-    var artistsByGenre = {
+    artistsByGenre = {
 	noGenre: [
 	    "absolutely free",	
 	    "Bell Orchestre",	
@@ -336,6 +347,7 @@ app.artistThrower = function (genreList, counter){// accepts an array and checks
     } else {
 	app.artistsArray = genreList;
 	console.log(app.artistsArray)
+        
     };                          
 
 }

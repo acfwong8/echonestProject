@@ -344,7 +344,7 @@ app.artistThrower = function (genreList, counter){// accepts an array and checks
             genreList.shift();
             console.log(genreList.length);
         };
-        for (var k = app.artistsArray.length; i < 3; i++){
+        for (var k = app.artistsArray.length; k < 3; k++){
             var num = (Math.floor(Math.random() * genreList.length))
             var name = genreList[num];
 	    	genreList.splice(num, 1)

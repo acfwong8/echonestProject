@@ -235,50 +235,46 @@ app.genreMatcher = function(genre){
 	australian:	["Sally Seltman"],
 	"brit pop":	["the cribs"]
     };
-    app.randomNoGenre(artistsByGenre.noGenre)
+    app.randomNoGenre(artistsByGenre.noGenre);
     console.log(Object.keys(artistsByGenre));
     if (artistsByGenre.hasOwnProperty(foundGenre)){
-        for (var prop in artistsByGenre){
-	    if(prop === foundGenre){
-                var tempName = [];
-                if(artistsByGenre[prop].length >= 3){
-	            tempName = artistsByGenre[prop];
-	            console.log(tempName);
-                    // array to object conversion
-                    app.arraytoObjects (tempName,foundGenre);
-                    console.log(tempName);
-	            // this part of the function can output an array for further processing.
-	            // placeholder for next function
-	            // app.artistThrower(tempName);
-                    
-                    app.artistThrower(tempName, 3);
-                } else {
-                    var tempNameinit = artistsByGenre[prop];
-                    var count = artistsByGenre[prop].length;
-                    console.log(count);
-                    app.arraytoObjects(tempNameinit,foundGenre); //array to object
-                    
-                    console.log(tempNameinit);
-                    for (var i = artistsByGenre[prop].length; i < 3; i++){
-                        for (var k = 0; k < app.newGenreList.length; k++){
-                            if(artistsByGenre.hasOwnProperty(app.newGenreList[k])){
-                                console.log(artistsByGenre[app.newGenreList[k]])
-                                var splicer = artistsByGenre[app.newGenreList[k]]
-                                app.arraytoObjects(splicer,app.newGenreList[k]);
-                                tempName = tempNameinit.concat(splicer);
-                            }
-                            if (tempName.length >= 3){
-                                console.log(tempName);
-                                break;
-                            }
-                           
-                        }
+        var tempName = [];
+        if(artistsByGenre[foundGenre].length >= 3){
+	    tempName = artistsByGenre[foundGenre];
+	    console.log(tempName);
+            // array to object conversion
+            app.arraytoObjects(tempName,foundGenre);
+            console.log(tempName);
+	    // this part of the function can output an array for further processing.
+	    // placeholder for next function
+	    // app.artistThrower(tempName);
+            
+            app.artistThrower(tempName, 3);
+        } else {
+            
+            var tempNameinit = artistsByGenre[foundGenre];
+            var count = artistsByGenre[foundGenre].length;
+            console.log(count);
+            app.arraytoObjects(tempNameinit,foundGenre); //array to object
+            
+            console.log(tempNameinit);
+            for (var i = artistsByGenre[foundGenre].length; i < 3; i++){
+                for (var k = 0; k < app.newGenreList.length; k++){
+                    if (artistsByGenre.hasOwnProperty(app.newGenreList[k])){
+                        console.log(artistsByGenre[app.newGenreList[k]])
+                        var splicer = artistsByGenre[app.newGenreList[k]]
+                        app.arraytoObjects(splicer,app.newGenreList[k]);
+                        tempName = tempNameinit.concat(splicer);
                     }
-                    console.log(tempName,count);
-                    app.artistThrower(tempName,count);
+                    if (tempName.length >= 3){
+                        console.log(tempName);
+                        break;
+                    }
+                    
                 }
-            }            
-
+            }
+            console.log(tempName,count);
+            app.artistThrower(tempName,count);
         }
     } else {
         var tempName = [];
